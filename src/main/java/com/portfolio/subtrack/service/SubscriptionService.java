@@ -24,4 +24,9 @@ public class SubscriptionService {
         return repository.save(subscription);
     }
 
+    // 4. Eliminar una suscripción por ID
+    public void deleteSubscription(Long id) {
+        repository.deleteById(id);
+    }
+
 }

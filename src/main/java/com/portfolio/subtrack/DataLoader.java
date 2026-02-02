@@ -44,7 +44,7 @@ public class DataLoader implements CommandLineRunner {
             gym.setCurrency("EUR");
             gym.setFrequency("MONTHLY");
             gym.setCategory("Fitness");
-            gym.setBillingDate(LocalDate.now().minusDays(1)); // Se cobró ayer
+            gym.setBillingDate(LocalDate.now().plusDays(3)); // Se cobra en 3 días
 
             // Guardamos todos en la base de datos
             repository.save(netflix);

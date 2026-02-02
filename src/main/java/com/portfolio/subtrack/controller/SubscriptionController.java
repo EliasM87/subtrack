@@ -30,4 +30,9 @@ public class SubscriptionController {
                                                                                             // validacion
         return service.saveSubscription(subscription);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteSubscription(@PathVariable Long id) {
+        service.deleteSubscription(id);
+    }
 }

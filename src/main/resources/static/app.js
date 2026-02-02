@@ -39,6 +39,9 @@ async function initializeApp() {
     // Set minimum date to today for billing date input
     setMinimumDate();
 
+    // Initialize delete modal
+    initializeDeleteModal();
+
     // Load subscriptions
     await loadSubscriptions();
 }
@@ -190,10 +193,48 @@ async function handleFormSubmit(event) {
 /**
  * Handle delete button click
  */
-function handleDeleteClick(id) {
-    if (confirm('¿Estás seguro de que quieres eliminar esta suscripción?')) {
-        deleteSubscription(id);
-    }
+let deleteSubscriptionId = null;
+
+/**
+ * Initialize delete modal event listeners using event delegation
+ */
+function initializeDeleteModal() {
+    const modal = document.getElementById('deleteModal');
+    const cancelBtn = document.getElementById('cancelDelete');
+    const confirmBtn = document.getElementById('confirmDelete');
+    const subscriptionsList = document.getElementById('subscriptionsList');
+
+    // Use event delegation - attach listener to parent container
+    subscriptionsList.addEventListener('click', (e) => {
+        // Check if clicked element is a delete button
+        if (e.target.classList.contains('btn-delete')) {
+            e.preventDefault();
+            e.stopPropagation();
+            deleteSubscriptionId = parseInt(e.target.dataset.id);
+            modal.classList.add('show');
+        }
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+        deleteSubscriptionId = null;
+    });
+
+    confirmBtn.addEventListener('click', () => {
+        if (deleteSubscriptionId !== null) {
+            deleteSubscription(deleteSubscriptionId);
+            modal.classList.remove('show');
+            deleteSubscriptionId = null;
+        }
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            deleteSubscriptionId = null;
+        }
+    });
 }
 
 // ==================== //
@@ -212,17 +253,10 @@ function renderSubscriptions() {
 
     emptyState.style.display = 'none';
 
+
     subscriptionsList.innerHTML = subscriptions
         .map(subscription => createSubscriptionCard(subscription))
         .join('');
-
-    // Add event listeners to delete buttons
-    document.querySelectorAll('.btn-delete').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const id = parseInt(e.target.dataset.id);
-            handleDeleteClick(id);
-        });
-    });
 }
 
 /**
@@ -255,7 +289,7 @@ function createSubscriptionCard(subscription) {
                     <span class="card-date-label">Próxima renovación</span>
                     <span class="card-date-value">${formattedDate}</span>
                 </div>
-                <button class="btn-delete" data-id="${subscription.id}">
+                <button type="button" class="btn-delete" data-id="${subscription.id}">
                     Eliminar
                 </button>
             </div>

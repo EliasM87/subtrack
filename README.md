@@ -41,7 +41,7 @@
 ## 🛠️ Tecnologías
 
 ### Backend
-- **Java 25** - Lenguaje de programación
+- **Java 21** - Lenguaje de programación
 - **Spring Boot 4.0.2** - Framework principal
   - Spring Web - API REST
   - Spring Data JPA - Persistencia de datos
