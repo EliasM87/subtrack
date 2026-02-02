@@ -36,6 +36,9 @@ async function initializeApp() {
     // Event Listeners
     subscriptionForm.addEventListener('submit', handleFormSubmit);
 
+    // Set minimum date to today for billing date input
+    setMinimumDate();
+
     // Load subscriptions
     await loadSubscriptions();
 }
@@ -168,7 +171,7 @@ async function handleFormSubmit(event) {
         currency: 'EUR',
         frequency: 'MONTHLY',
         category: formData.get('category'),
-        billingDate: formData.get('renewalDate'),
+        billingDate: formData.get('billingDate'),
     };
 
     // Validate data
@@ -308,6 +311,17 @@ function showToast(message, type = 'success') {
 // ==================== //
 // UTILITY FUNCTIONS
 // ==================== //
+
+/**
+ * Set minimum date to today for billing date input
+ */
+function setMinimumDate() {
+    const today = new Date().toISOString().split('T')[0];
+    const billingDateInput = document.getElementById('billingDate');
+    if (billingDateInput) {
+        billingDateInput.setAttribute('min', today);
+    }
+}
 
 /**
  * Validate subscription data

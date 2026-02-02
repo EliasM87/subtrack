@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
-@Data // Lombok
+@Data // Lombok para generar getters y setters
 @Table(name = "subscriptions") // Nombre de la tabla en la BD
 public class Subscription {
 

@@ -2,6 +2,9 @@ package com.portfolio.subtrack.controller;
 
 import com.portfolio.subtrack.entity.Subscription;
 import com.portfolio.subtrack.service.SubscriptionService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,17 +20,14 @@ public class SubscriptionController {
         this.service = service;
     }
 
-    // GET: Pedir datos
-    // URL Final: http://localhost:8080/api/subscriptions
     @GetMapping
     public List<Subscription> getAllSubscriptions() {
         return service.getAllSubscriptions();
     }
 
-    // POST: Enviar datos para guardar
-    // URL Final: http://localhost:8080/api/subscriptions
     @PostMapping
-    public Subscription createSubscription(@RequestBody Subscription subscription) {
+    public Subscription createSubscription(@Valid @RequestBody Subscription subscription) { // @Valid para usar la
+                                                                                            // validacion
         return service.saveSubscription(subscription);
     }
 }
