@@ -22,7 +22,7 @@
 ## 📸 Capturas de Pantalla
 
 <div align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Dashboard" width="800"/>
+  <img src="docs/dashboard.png" alt="Dashboard" width="800"/>
   <p><em>Dashboard principal con estadísticas y lista de suscripciones</em></p>
 </div>
 
