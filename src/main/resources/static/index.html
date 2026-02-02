@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubTrack - Gestión de Suscripciones</title>
+    <meta name="description" content="Gestiona todas tus suscripciones en un solo lugar con SubTrack">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="background-gradient"></div>
+    <div class="background-blur"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)" />
+                        <path d="M16 8L24 12V20L16 24L8 20V12L16 8Z" stroke="white" stroke-width="2"
+                            stroke-linejoin="round" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#667eea" />
+                                <stop offset="100%" stop-color="#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1>SubTrack</h1>
+            </div>
+            <div class="header-stats">
+                <div class="stat-card">
+                    <span class="stat-label">Total Suscripciones</span>
+                    <span class="stat-value" id="totalCount">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Gasto Mensual</span>
+                    <span class="stat-value" id="totalCost">0€</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Add Subscription Form -->
+        <section class="add-section">
+            <div class="section-header">
+                <h2>Nueva Suscripción</h2>
+                <p>Añade una nueva suscripción a tu lista</p>
+            </div>
+
+            <form id="subscriptionForm" class="subscription-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nombre del Servicio</label>
+                        <input type="text" id="name" name="name" placeholder="Netflix, Spotify, etc." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Precio Mensual (€)</label>
+                        <input type="number" id="price" name="price" step="0.01" placeholder="9.99" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Categoría</label>
+                        <select id="category" name="category" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Streaming">Streaming</option>
+                            <option value="Música">Música</option>
+                            <option value="Software">Software</option>
+                            <option value="Cloud">Cloud Storage</option>
+                            <option value="Fitness">Fitness</option>
+                            <option value="Educación">Educación</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="renewalDate">Fecha de Renovación</label>
+                        <input type="date" id="renewalDate" name="renewalDate" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="btn-icon">+</span>
+                    Añadir Suscripción
+                </button>
+            </form>
+        </section>
+
+        <!-- Subscriptions List -->
+        <section class="list-section">
+            <div class="section-header">
+                <h2>Mis Suscripciones</h2>
+                <p>Gestiona todas tus suscripciones activas</p>
+            </div>
+
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>Cargando suscripciones...</p>
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">📋</div>
+                <h3>No hay suscripciones</h3>
+                <p>Añade tu primera suscripción usando el formulario de arriba</p>
+            </div>
+
+            <div id="subscriptionsList" class="subscriptions-grid"></div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
