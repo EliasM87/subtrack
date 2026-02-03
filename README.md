@@ -285,7 +285,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 **Elias MP**
 
 - GitHub: [@EliasM87](https://github.com/EliasM87)
-- LinkedIn: [Elias Marin Perez](www.linkedin.com/in/elías-marín-pérez)
+- LinkedIn: [Elias Marin Perez](https://www.linkedin.com/in/elias-marin/)
 
 ## 🙏 Agradecimientos
 
